@@ -28,7 +28,7 @@ jobs:
       - name: Migrate database
         run: |
           sudo apt-get install libpq-dev -y
-          cargo install --version=0.2.0 sqlx-cli --no-default-features --features postgres
+          cargo install --version=0.2.0 sqlx-cli --locked --no-default-features --features postgres
           ./scripts/init_db.sh
       - uses: actions-rs/cargo@v1
         with:
@@ -68,11 +68,10 @@ jobs:
           components: clippy
           toolchain: stable
           override: true
-
       - name: Migrate database
         run: |
           sudo apt-get install libpq-dev -y
-          cargo install --version=0.2.0 sqlx-cli --no-default-features --features postgres
+          cargo install --version=0.2.0 sqlx-cli --locked --no-default-features --features postgres
           ./scripts/init_db.sh
       - uses: actions-rs/clippy-check@v1
         with:
@@ -100,10 +99,11 @@ jobs:
         with:
           toolchain: stable
           override: true
+
       - name: Migrate database
         run: |
           sudo apt-get install libpq-dev -y
-          cargo install --version=0.2.0 sqlx-cli --no-default-features --features postgres
+          cargo install --version=0.2.0 sqlx-cli --locked --no-default-features --features postgres
           ./scripts/init_db.sh
 
       - name: Run cargo-tarpaulin

@@ -1,5 +1,11 @@
 version: '3.8'
 services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    networks:
+      - straight2prod
   db:
     image: postgres
     restart: always
@@ -12,6 +18,13 @@ services:
       - '5432:5432'
     volumes:
       - data:/var/lib/postgresql/data
+    networks:
+      - straight2prod
 
 volumes:
   data:
+
+networks:
+  straight2prod:
+    name: straight2prod
+    
